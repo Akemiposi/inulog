@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>わんLOG</title>
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/reset.css" />
+    <!-- <link rel="stylesheet" href="css/reset.css"> -->
   </head>
   <body>
     <header></header>
@@ -21,6 +21,9 @@
           <label>生まれた日<input type="date" id="bornDate" /></label>
           <label>うちに来た日<input type="date" id="homeDate" /></label>
           <button type="submit">日数を計算</button>
+          <button type="button" id="resetHomeDate">
+            うちに来た日をリセット
+          </button>
         </form>
 
         <div id="dayInfo">
@@ -130,8 +133,11 @@
     <footer></footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <script>
-      // 今日の天気セクション
+      const logKey = "healthLogs"; //healthLogsを全部「logKey」とする
+
+      // ＊＊＊＊＊今日の天気セクション＊＊＊＊＊
       const apiKey = "f53d2635fbbc9041de9c29eecd83a9a2"; //openweathermap のAPIkey
       const lat = 35.68;
       const lon = 139.76;
@@ -163,14 +169,16 @@
           }
 
           $("#walkAdvice").html(`
-        ${weatherText}<br>
-        ${tempText}<br>
-        ${advice}
-      `);
+          ${weatherText}<br>
+          ${tempText}<br>
+          ${advice}
+        `);
         }
       );
 
-      // logセクション
+      //＊＊＊＊＊ログセクション＊＊＊＊＊
+
+      //＊＊＊＊＊日数計算＊＊＊＊＊
     </script>
   </body>
 </html>
