@@ -131,7 +131,35 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
-     
+
+        // 今日の天気パーツ
+    $.getJSON(
+  "https://api.open-meteo.com/v1/forecast?latitude=35.68&longitude=139.76&daily=weathercode,precipitation_sum&timezone=Asia%2FTokyo",
+  function (data) {
+    const rain = data.daily.precipitation_sum[0];
+    const weatherCode = data.daily.weathercode[0];
+
+    const weatherText = (() => {
+      if (weatherCode === 0) return "☀️ 晴れ";
+      if (weatherCode === 1 || weatherCode === 2) return "🌤 曇りがちの晴れ";
+      if (weatherCode === 3) return "☁️ 曇り";
+      if ([51, 53, 55, 61, 63, 65, 80, 81, 82].includes(weatherCode)) return "🌧 雨";
+      if ([71, 73, 75, 85, 86].includes(weatherCode)) return "❄️ 雪";
+      return "🌫 不明な天気";
+    })();
+
+    let advice = "";
+    if (rain > 0 || [61, 63, 65, 80, 81, 82].includes(weatherCode)) {
+      advice = "屋内かけっこをオススメします☔️";
+    } else if (weatherCode === 0 || weatherCode === 1 || weatherCode === 2) {
+      advice = "ロング散歩に出かけよう🐕‍🦺";
+    } else {
+      advice = "体調や様子を見ながら短めに散歩してもいいかも。";
+    }
+
+    $("#walkAdvice").text(`今日は ${weatherText} の予報です。${advice}`);
+  }
+);
     </script>
   </body>
 </html>
