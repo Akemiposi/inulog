@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>わんLOG</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/reset.css" />
   </head>
   <body>
@@ -39,7 +39,7 @@
         <form id="logForm">
           <dl>
             <dt><label>日付</label></dt>
-            <dd><input type="date" id="logDate"></dd>
+            <dd><input type="date" id="logDate" /></dd>
 
             <dt><label>元気</label></dt>
             <dd>
@@ -131,35 +131,46 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
+      // 今日の天気セクション
+      const apiKey = "f53d2635fbbc9041de9c29eecd83a9a2"; //openweathermap のAPIkey
+      const lat = 35.68;
+      const lon = 139.76;
 
-        // 今日の天気パーツ
-    $.getJSON(
-  "https://api.open-meteo.com/v1/forecast?latitude=35.68&longitude=139.76&daily=weathercode,precipitation_sum&timezone=Asia%2FTokyo",
-  function (data) {
-    const rain = data.daily.precipitation_sum[0];
-    const weatherCode = data.daily.weathercode[0];
+      $.getJSON(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=ja`,
+        function (data) {
+          const weatherId = data.weather[0].id;
+          const description = data.weather[0].description;
+          const tempMax = data.main.temp_max;
+          const tempMin = data.main.temp_min;
 
-    const weatherText = (() => {
-      if (weatherCode === 0) return "☀️ 晴れ";
-      if (weatherCode === 1 || weatherCode === 2) return "🌤 曇りがちの晴れ";
-      if (weatherCode === 3) return "☁️ 曇り";
-      if ([51, 53, 55, 61, 63, 65, 80, 81, 82].includes(weatherCode)) return "🌧 雨";
-      if ([71, 73, 75, 85, 86].includes(weatherCode)) return "❄️ 雪";
-      return "🌫 不明な天気";
-    })();
+          const weatherText = `🌤 天気: ${description}`;
+          const tempText = `🌡 気温: ${tempMin.toFixed(1)}℃〜${tempMax.toFixed(
+            1
+          )}℃`;
 
-    let advice = "";
-    if (rain > 0 || [61, 63, 65, 80, 81, 82].includes(weatherCode)) {
-      advice = "屋内かけっこをオススメします☔️";
-    } else if (weatherCode === 0 || weatherCode === 1 || weatherCode === 2) {
-      advice = "ロング散歩に出かけよう🐕‍🦺";
-    } else {
-      advice = "体調や様子を見ながら短めに散歩してもいいかも。";
-    }
+          let advice = "";
+          if (weatherId >= 200 && weatherId < 600) {
+            advice = "☔️ 雨の可能性あり。屋内かけっこをオススメします";
+          } else if (weatherId >= 600 && weatherId < 700) {
+            advice = "❄️ 雪かもしれません。防寒をしっかりと！";
+          } else if (weatherId === 800) {
+            advice = "☀️ 晴れ！ロング散歩日和🐾";
+          } else if (weatherId >= 801 && weatherId <= 804) {
+            advice = "☁️ 曇り空。体調に合わせてお散歩しましょう";
+          } else {
+            advice = "天気が不明です。様子を見ながら過ごしましょう";
+          }
 
-    $("#walkAdvice").text(`今日は ${weatherText} の予報です。${advice}`);
-  }
-);
+          $("#walkAdvice").html(`
+        ${weatherText}<br>
+        ${tempText}<br>
+        ${advice}
+      `);
+        }
+      );
+
+      // logセクション
     </script>
   </body>
 </html>
