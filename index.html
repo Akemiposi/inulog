@@ -17,10 +17,21 @@
 
       <section>
         <h2>日数カウンター</h2>
+        <form id="dateForm">
+          <label>生まれた日<input type="date" id="bornDate" /></label>
+          <label>うちに来た日<input type="date" id="homeDate" /></label>
+          <button type="submit">日数を計算</button>
+        </form>
+
+        <div id="dayInfo">
+          <p id="bornDays"></p>
+          <p id="homeDays"></p>
+        </div>
       </section>
 
       <section>
         <h2>今日の天気</h2>
+        <p id="walkAdvice">天気情報を取得中...</p>
       </section>
 
       <section>
@@ -28,11 +39,11 @@
         <form id="logForm">
           <dl>
             <dt><label>日付</label></dt>
-            <dd><input type="date" name="" id="" /></dd>
+            <dd><input type="date" id="logDate"></dd>
 
             <dt><label>元気</label></dt>
             <dd>
-              <select name="" id="">
+              <select name="" id="condition">
                 <option value="" selected="selected">
                   状態を選んでください
                 </option>
@@ -46,7 +57,7 @@
 
             <dt><label>食欲</label></dt>
             <dd>
-              <select name="" id="">
+              <select name="" id="food">
                 <option value="" selected="selected">
                   状態を選んでください
                 </option>
@@ -59,7 +70,7 @@
 
             <dt><label>うんち</label></dt>
             <dd>
-              <select name="" id="">
+              <select name="" id="poop">
                 <option value="" selected="selected">
                   状態を選んでください
                 </option>
@@ -73,7 +84,7 @@
 
             <dt><label>おしっこ</label></dt>
             <dd>
-              <select name="" id="">
+              <select name="" id="pee">
                 <option value="" selected="selected">
                   おおよその状態を選んでください
                 </option>
@@ -87,7 +98,7 @@
 
             <dt><label>散歩</label></dt>
             <dd>
-              <select name="" id="">
+              <select name="" id="walk">
                 <option value="" selected="selected">
                   状態を選んでください
                 </option>
@@ -109,11 +120,18 @@
         </form>
       </section>
 
-      <section>
+      <section id="logSection">
         <h2>記録一覧</h2>
+        <button id="showLogs">ログを見る</button>
+        <div id="logDisplay"></div>
       </section>
     </main>
 
     <footer></footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+     
+    </script>
   </body>
 </html>
