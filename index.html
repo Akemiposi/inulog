@@ -1,13 +1,119 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>わんLOG</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="css/reset.css">
-</head>
-<body>
-    
-</body>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+  </head>
+  <body>
+    <header></header>
+
+    <main>
+      <section>
+        <h1>わんLOG</h1>
+      </section>
+
+      <section>
+        <h2>日数カウンター</h2>
+      </section>
+
+      <section>
+        <h2>今日の天気</h2>
+      </section>
+
+      <section>
+        <h2>体調管理</h2>
+        <form id="logForm">
+          <dl>
+            <dt><label>日付</label></dt>
+            <dd><input type="date" name="" id="" /></dd>
+
+            <dt><label>元気</label></dt>
+            <dd>
+              <select name="" id="">
+                <option value="" selected="selected">
+                  状態を選んでください
+                </option>
+                <option value="veryGood">とても元気</option>
+                <option value="good">元気</option>
+                <option value="littleDown">少し元気がない</option>
+                <option value="notWell">元気がない</option>
+                <option value="bad">体調が悪そう</option>
+              </select>
+            </dd>
+
+            <dt><label>食欲</label></dt>
+            <dd>
+              <select name="" id="">
+                <option value="" selected="selected">
+                  状態を選んでください
+                </option>
+                <option value="good">旺盛</option>
+                <option value="normal">普通</option>
+                <option value="someLeft">少し残した</option>
+                <option value="notEat">全く食べない</option>
+              </select>
+            </dd>
+
+            <dt><label>うんち</label></dt>
+            <dd>
+              <select name="" id="">
+                <option value="" selected="selected">
+                  状態を選んでください
+                </option>
+                <option value="normal">通常</option>
+                <option value="korokoro">コロコロ</option>
+                <option value="hard">かたい</option>
+                <option value="looseStool">ゆるい</option>
+                <option value="no">うんちなし</option>
+              </select>
+            </dd>
+
+            <dt><label>おしっこ</label></dt>
+            <dd>
+              <select name="" id="">
+                <option value="" selected="selected">
+                  おおよその状態を選んでください
+                </option>
+                <option value="normal">普通</option>
+                <option value="too">多い</option>
+                <option value="few">少ない</option>
+                <option value="amber">色が濃い</option>
+                <option value="bloody">血尿</option>
+              </select>
+            </dd>
+
+            <dt><label>散歩</label></dt>
+            <dd>
+              <select name="" id="">
+                <option value="" selected="selected">
+                  状態を選んでください
+                </option>
+                <option value="long">ロング散歩</option>
+                <option value="short">ショート散歩</option>
+                <option value="rainy">雨：屋内かけっこ</option>
+                <option value="dislike">行きたがらない</option>
+                <option value="cant">行けない</option>
+              </select>
+            </dd>
+
+            <dt><label>メモ</label></dt>
+            <dd><textarea id="memo" rows="5"></textarea></dd>
+
+            <dt><label>画像</label></dt>
+            <dd><input type="file" id="photo" accept="image/*" /></dd>
+          </dl>
+          <button type="submit">保存</button>
+        </form>
+      </section>
+
+      <section>
+        <h2>記録一覧</h2>
+      </section>
+    </main>
+
+    <footer></footer>
+  </body>
 </html>
