@@ -1,4 +1,3 @@
-
 const logKey = "healthLogs"; //healthLogsを全部「logKey」とする
 
 // ＊＊＊＊＊今日の天気セクション＊＊＊＊＊
@@ -15,9 +14,7 @@ $.getJSON(
     const tempMin = data.main.temp_min;
 
     const weatherText = `🌤 天気: ${description}`;
-    const tempText = `🌡 気温: ${tempMin.toFixed(1)}℃〜${tempMax.toFixed(
-      1
-    )}℃`;
+    const tempText = `🌡 気温: ${tempMin.toFixed(1)}℃〜${tempMax.toFixed(1)}℃`;
 
     let advice = "";
     if (weatherId >= 200 && weatherId < 600) {
@@ -44,74 +41,70 @@ $.getJSON(
 
 //＊＊＊＊＊日数計算＊＊＊＊＊
 
- $(document).ready(function () {
-    const bornKey = "bornDate";
-    const homeKey = "homeDate";
+$(document).ready(function () {
+  const bornKey = "bornDate";
+  const homeKey = "homeDate";
 
-    //localStorage から値を読み込んで日数を表示
-    const savedBornDate = localStorage.getItem(bornKey);
-    console.log("savedBornDate:", savedBornDate);
-    const savedHomeDate = localStorage.getItem(homeKey);
-    console.log("savedHomeDate:", savedHomeDate);
+  //localStorage から値を読み込んで日数を表示
+  const savedBornDate = localStorage.getItem(bornKey);
+  console.log("savedBornDate:", savedBornDate);
+  const savedHomeDate = localStorage.getItem(homeKey);
+  console.log("savedHomeDate:", savedHomeDate);
 
-    if (savedBornDate) {
-      $("#bornDate").val(savedBornDate);
-      showBornDays(savedBornDate);
-    }
+  if (savedBornDate) {
+    $("#bornDate").val(savedBornDate);
+  }
+  if (savedHomeDate) {
+    $("#homeDate").val(savedHomeDate);
+  }
 
-    if (savedHomeDate) {
-      $("#homeDate").val(savedHomeDate);
-      showHomeDays(savedHomeDate);
-    }
+  //日付送信フォームの処理
+  $("#dateForm").on("submit", function (e) {
+    e.preventDefault();
 
-    //日付送信フォームの処理
-    $("#dateForm").on("submit", function (e) {
-      e.preventDefault();
-
-      if (!localStorage.getItem(bornKey)) {
-        const bornDate = $("#bornDate").val();
-        if (!bornDate) {
-          alert("生まれた日を選んでください");
-          return;
-        }
-        localStorage.setItem(bornKey, bornDate);
-        showBornDays(bornDate);
+    if (!localStorage.getItem(bornKey)) {
+      const bornDate = $("#bornDate").val();
+      if (!bornDate) {
+        alert("生まれた日を選んでください");
+        return;
       }
-
-      if (!localStorage.getItem(homeKey)) {
-        const homeDate = $("#homeDate").val();
-        if (!homeDate) {
-          alert("うちに来た日を選んでください");
-          return;
-        }
-        localStorage.setItem(homeKey, homeDate);
-        showHomeDays(homeDate);
-      }
-    });
-
-    //生まれてからの日数表示
-    function showBornDays(bornDateStr) {
-      const start = new Date(bornDateStr);
-      const today = new Date();
-      const diffMs = today - start;
-      const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-
-      $("#bornDays").text(`生まれてから：${diffDays}日`);
+      localStorage.setItem(bornKey, bornDate);
     }
 
-    //うちに来てからの日数表示
-    function showHomeDays(homeDateStr) {
-      const start = new Date(homeDateStr);
-      const today = new Date();
-      const diffMs = today - start;
-      const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-
-      $("#homeDays").text(`うちに来てから：${diffDays}日`);
+    if (!localStorage.getItem(homeKey)) {
+      const homeDate = $("#homeDate").val();
+      if (!homeDate) {
+        alert("うちに来た日を選んでください");
+        return;
+      }
+      localStorage.setItem(homeKey, homeDate);
     }
   });
-  $("#resetHomeDate").on("click", function () {
+
+  // 共通の日数表示関数
+  function showDaysSince(dateStr, targetSelector, label) {
+    const start = new Date(dateStr);
+    const today = new Date();
+    const diffDays = Math.floor((today - start) / (1000 * 60 * 60 * 24));
+
+    $(targetSelector).text(`${label}：${diffDays}日`);
+  }
+
+  // 例：呼び出し側
+  const bornDateStr = $("#bornDate").val();
+  const homeDateStr = $("#homeDate").val();
+
+  if (bornDateStr) {
+    showDaysSince(bornDateStr, "#bornDays", "生まれてから");
+  }
+
+  if (homeDateStr) {
+    showDaysSince(homeDateStr, "#homeDays", "うちに来てから");
+  }
+});
+$("#resetHomeDate").on("click", function () {
   localStorage.removeItem("homeDate");
-  $("#homeDate").val("");          // フォームの表示もクリア
-  $("#homeDays").text("");         // 表示を消す
+  $("#homeDate").val(""); // フォームの表示もクリア
+  $("#homeDays").text(""); // 表示を消す
   alert("うちに来た日をリセットしました");
 });
