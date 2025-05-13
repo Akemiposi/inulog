@@ -1,6 +1,7 @@
 const logKey = "healthLogs"; //healthLogsを全部「logKey」とする
 
 // ＊＊＊＊＊今日の天気セクション＊＊＊＊＊
+
 const apiKey = "f53d2635fbbc9041de9c29eecd83a9a2"; //openweathermap のAPIkey
 const lat = 35.68;
 const lon = 139.76;
@@ -38,6 +39,71 @@ $.getJSON(
 );
 
 //＊＊＊＊＊ログセクション＊＊＊＊＊
+
+$("#logForm").on("submit", function (e) {
+    e.preventDefault(); //ページはリロードされず、値をJSで受け取って画面に返すのみ（まだデータベースがないからリロードされちゃダメ）
+
+    // １、まず置き換える
+    const date = $("#logDate").val();
+    const condition = $("#condition").val();
+    const food = $("#food").val();
+    const poop = $("#poop").val();
+    const pee = $("#pee").val();
+    const walk = $("#walk").val();
+    const memo = $("#memo").val();
+    const photoFile = $("#photo")[0].files[0];
+    const photoName = photoFile ? photoFile.name : "";
+
+    //２、ログを保存
+    const logs = JSON.parse(localStorage.getItem(logKey)) || [];
+
+    const newLog = {
+      date,
+      condition,
+      food,
+      poop,
+      pee,
+      walk,
+      memo,
+      photoName,
+      createdAt: new Date().toLocaleString(),
+    };
+
+    logs.push(newLog);
+    localStorage.setItem(logKey, JSON.stringify(logs));
+
+    alert("保存しました");
+    this.reset();
+  });
+
+  //３、ログを出力
+  $("#showLogs").on("click", function () {
+    const logs = JSON.parse(localStorage.getItem(logKey)) || [];
+    if (logs.length === 0) {
+      $("#logDisplay").html("ログはありません");
+      return;
+    }
+
+    const html = logs
+      .map((log, i) => {
+        const getOrNA = (val) => (val ? val : "未入力");
+
+        return `<div style="margin-bottom:10px;">
+      <strong>日付:</strong> ${log.date}<br>
+      <strong>元気:</strong> ${getOrNA(log.condition)}<br>
+      <strong>食欲:</strong> ${getOrNA(log.food)}<br>
+      <strong>うんち:</strong> ${getOrNA(log.poop)}<br>
+      <strong>おしっこ:</strong> ${getOrNA(log.pee)}<br>
+      <strong>散歩:</strong> ${getOrNA(log.walk)}<br>
+      <strong>メモ:</strong> ${getOrNA(log.memo)}<br>
+      <strong>画像名:</strong> ${getOrNA(log.photoName)}<br>
+      <small>保存時刻: ${log.createdAt}</small>
+    </div>`;
+      })
+      .join(""); //文字列として表示する時にカンマを入れないようにする
+
+    $("#logDisplay").html(html);
+  });
 
 //＊＊＊＊＊日数計算＊＊＊＊＊
 
