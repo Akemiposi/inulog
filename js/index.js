@@ -41,54 +41,54 @@ $.getJSON(
 //＊＊＊＊＊ログセクション＊＊＊＊＊
 
 $("#logForm").on("submit", function (e) {
-    e.preventDefault(); //ページはリロードされず、値をJSで受け取って画面に返すのみ（まだデータベースがないからリロードされちゃダメ）
+  e.preventDefault(); //ページはリロードされず、値をJSで受け取って画面に返すのみ（まだデータベースがないからリロードされちゃダメ）
 
-    // １、まず置き換える
-    const date = $("#logDate").val();
-    const condition = $("#condition").val();
-    const food = $("#food").val();
-    const poop = $("#poop").val();
-    const pee = $("#pee").val();
-    const walk = $("#walk").val();
-    const memo = $("#memo").val();
-    const photoFile = $("#photo")[0].files[0];
-    const photoName = photoFile ? photoFile.name : "";
+  // １、まず置き換える
+  const date = $("#logDate").val();
+  const condition = $("#condition").val();
+  const food = $("#food").val();
+  const poop = $("#poop").val();
+  const pee = $("#pee").val();
+  const walk = $("#walk").val();
+  const memo = $("#memo").val();
+  const photoFile = $("#photo")[0].files[0];
+  const photoName = photoFile ? photoFile.name : "";
 
-    //２、ログを保存
-    const logs = JSON.parse(localStorage.getItem(logKey)) || [];
+  //２、ログを保存
+  const logs = JSON.parse(localStorage.getItem(logKey)) || [];
 
-    const newLog = {
-      date,
-      condition,
-      food,
-      poop,
-      pee,
-      walk,
-      memo,
-      photoName,
-      createdAt: new Date().toLocaleString(),
-    };
+  const newLog = {
+    date,
+    condition,
+    food,
+    poop,
+    pee,
+    walk,
+    memo,
+    photoName,
+    createdAt: new Date().toLocaleString(),
+  };
 
-    logs.push(newLog);
-    localStorage.setItem(logKey, JSON.stringify(logs));
+  logs.push(newLog);
+  localStorage.setItem(logKey, JSON.stringify(logs));
 
-    alert("保存しました");
-    this.reset();
-  });
+  alert("保存しました");
+  this.reset();
+});
 
-  //３、ログを出力
-  $("#showLogs").on("click", function () {
-    const logs = JSON.parse(localStorage.getItem(logKey)) || [];
-    if (logs.length === 0) {
-      $("#logDisplay").html("ログはありません");
-      return;
-    }
+//３、ログを出力
+$("#showLogs").on("click", function () {
+  const logs = JSON.parse(localStorage.getItem(logKey)) || [];
+  if (logs.length === 0) {
+    $("#logDisplay").html("ログはありません");
+    return;
+  }
 
-    const html = logs
-      .map((log, i) => {
-        const getOrNA = (val) => (val ? val : "未入力");
+  const html = logs
+    .map((log, i) => {
+      const getOrNA = (val) => (val ? val : "未入力");
 
-        return `<div style="margin-bottom:10px;">
+      return `<div style="margin-bottom:10px;">
       <strong>日付:</strong> ${log.date}<br>
       <strong>元気:</strong> ${getOrNA(log.condition)}<br>
       <strong>食欲:</strong> ${getOrNA(log.food)}<br>
@@ -99,11 +99,11 @@ $("#logForm").on("submit", function (e) {
       <strong>画像名:</strong> ${getOrNA(log.photoName)}<br>
       <small>保存時刻: ${log.createdAt}</small>
     </div>`;
-      })
-      .join(""); //文字列として表示する時にカンマを入れないようにする
+    })
+    .join(""); //文字列として表示する時にカンマを入れないようにする
 
-    $("#logDisplay").html(html);
-  });
+  $("#logDisplay").html(html);
+});
 
 //＊＊＊＊＊日数計算＊＊＊＊＊
 
@@ -156,7 +156,6 @@ $(document).ready(function () {
     $(targetSelector).text(`${label}：${diffDays}日`);
   }
 
-  // 例：呼び出し側
   const bornDateStr = $("#bornDate").val();
   const homeDateStr = $("#homeDate").val();
 
@@ -174,3 +173,13 @@ $("#resetHomeDate").on("click", function () {
   $("#homeDays").text(""); // 表示を消す
   alert("うちに来た日をリセットしました");
 });
+
+// 犬の画像を交互に切り替える
+const dogRunner = document.getElementById("dogRunner");
+const dogImages = ["img/dog1.png", "img/dog2.png"];
+let dogIndex = 0;
+
+setInterval(() => {
+  dogIndex = (dogIndex + 1) % dogImages.length;
+  dogRunner.src = dogImages[dogIndex];
+}, 300); // 0.3秒ごとに犬画像を切り替え
