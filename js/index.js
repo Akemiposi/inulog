@@ -176,10 +176,21 @@ $("#resetHomeDate").on("click", function () {
 
 // 犬の画像を交互に切り替える
 const dogRunner = document.getElementById("dogRunner");
+id="dogRunner"の
 const dogImages = ["img/dog1.png", "img/dog2.png"];
-let dogIndex = 0;
+let dogIndex = 0;//dog1からスタート
 
 setInterval(() => {
   dogIndex = (dogIndex + 1) % dogImages.length;
   dogRunner.src = dogImages[dogIndex];
 }, 300); // 0.3秒ごとに犬画像を切り替え
+
+// ① dogIndex + 1 でカウントアップ
+// dogIndex は今の画像の番号（インデックス）
+// → 0 のときに +1 → 1 になる
+// → 1 のときに +1 → 2 になる
+
+// ② % dogImages.length で範囲を制限する
+// % は 「割った余り」 を求める演算子（モジュロ演算子）
+// dogImages.length は配列の長さ、要素数（今回は 2）
+// let i = (i + 1) % 2;で０→１→０→１を繰り返す

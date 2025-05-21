@@ -36,7 +36,14 @@ main {
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(200, 160, 100, 0.2);
 }
-
+/* 🐾 */
+main::before {
+  content: "🐾";
+  display: block;
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
 h1 {
   text-align: center;
   font-size: 2.5em;
@@ -124,15 +131,6 @@ dd {
   margin: 5px 0;
 }
 
-/* ちょっとした犬っぽさ追加 */
-main::before {
-  content: "🐾";
-  display: block;
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
 /* ランナーシーン */
 #runScene {
   position: relative;
@@ -146,10 +144,10 @@ main::before {
 /* 草を繰り返し、footerの下半分にかかるように */
 #grass {
   position: absolute;
-  bottom: 0;
+  bottom: -50px; /* 草がfooterに埋まるように */
   width: 100%;
   height: 100%;
-  background-image: url('../img/grass.png');
+  background-image: url("../img/grass.png");
   background-repeat: repeat-x;
   background-size: auto 100%;
   z-index: 1;
@@ -158,7 +156,7 @@ main::before {
 /* 犬アニメーション：もっとゆっくり歩く感じ */
 #dogRunner {
   position: absolute;
-  bottom: 3px; /* ← 点線のちょい上に足が来るように調整 */
+  bottom: 3px; /* ← 点線のちょい上に足が来るように */
   right: -120px;
   width: 180px;
   animation: dogRun 20s linear infinite;
@@ -187,8 +185,6 @@ footer {
   overflow: hidden;
   z-index: 5;
 }
-
-
 
 /* ーーーーーーーーー記録のスタイルーーーーーーーーーーー */
 /* ログ表示用スタイル（#logDisplay内の1件ごとの表示） */
