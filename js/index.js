@@ -51,6 +51,10 @@ $("#logForm").on("submit", function (e) {
   const pee = $("#pee").val();
   const walk = $("#walk").val();
   const memo = $("#memo").val();
+  const memo_1 = $("#memo_1").val();
+  const memo_2 = $("#memo_2").val();
+  const memo_3 = $("#memo_3").val();
+  const memo_4 = $("#memo_4").val();
   const photoFile = $("#photo")[0].files[0];
   const photoName = photoFile ? photoFile.name : "";
 
@@ -65,6 +69,10 @@ $("#logForm").on("submit", function (e) {
     pee,
     walk,
     memo,
+    memo_1,
+    memo_2,
+    memo_3,
+    memo_,
     photoName,
     createdAt: new Date().toLocaleString(),
   };

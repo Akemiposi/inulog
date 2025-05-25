@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>いぬメモ＿ほすログ</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li>><a href="index.html">TOP</a></li>
+          <li>いぬメモギャラリー</li>
+          <li>いぬログ</li>
+          <li><a href="hoslog.html">ほすログ</a></li>
+          <li>たびログ</li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+        <h1>ほすログ</h1>
+      </section>
+
+      <section>
+        <h2>通院記録</h2>
+        <form id="logForm">
+          <dl>
+            <dt><label>日付</label></dt>
+            <dd><input type="date" id="logDate" /></dd>
+
+            <dt><label>事前症状</label></dt>
+            <dd><textarea id="memo_1" rows="5"></textarea></dd>
+
+            <dt><label>検査</label></dt>
+            <dd><textarea id="memo_2" rows="5"></textarea></dd>
+
+            <dt><label>薬</label></dt>
+            <dd><textarea id="memo_3" rows="5"></textarea></dd>
+
+            <dt><label>診察内容・アドバイス</label></dt>
+            <dd><textarea id="memo_4" rows="5"></textarea></dd>
+          </dl>
+          <button type="submit">保存</button>
+        </form>
+      </section>
+
+      <section id="logSection">
+        <h2>記録一覧</h2>
+        <button id="showLogs">ログを見る</button>
+        <div id="logDisplay"></div>
+      </section>
+    </main>
+    <div id="runScene">
+      <div id="grass"></div>
+      <img id="dogRunner" src="img/dog1.png" alt="走るダックス" />
+    </div>
+    <footer>
+      <p>＠いぬメモ all right reserved.</p>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/hoslog.js"></script>
+  </body>
+</html>
