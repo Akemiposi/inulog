@@ -55,3 +55,12 @@ $("#showLogs").on("click", function () {
 
   $("#logDisplay").html(html);
 });
+// 犬の画像を交互に切り替える
+const $dogRunner = $("#dogRunner");
+const dogImages = ["img/dog1.png", "img/dog2.png"];
+let dogIndex = 0; //dog1からスタート
+
+setInterval(() => {
+  dogIndex = (dogIndex + 1) % dogImages.length;
+  $dogRunner.attr("src", dogImages[dogIndex]);
+}, 300); // 0.3秒ごとに犬画像を切り替え

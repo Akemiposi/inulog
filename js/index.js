@@ -51,10 +51,6 @@ $("#logForm").on("submit", function (e) {
   const pee = $("#pee").val();
   const walk = $("#walk").val();
   const memo = $("#memo").val();
-  const memo_1 = $("#memo_1").val();
-  const memo_2 = $("#memo_2").val();
-  const memo_3 = $("#memo_3").val();
-  const memo_4 = $("#memo_4").val();
   const photoFile = $("#photo")[0].files[0];
   const photoName = photoFile ? photoFile.name : "";
 
@@ -69,10 +65,6 @@ $("#logForm").on("submit", function (e) {
     pee,
     walk,
     memo,
-    memo_1,
-    memo_2,
-    memo_3,
-    memo_,
     photoName,
     createdAt: new Date().toLocaleString(),
   };
@@ -186,11 +178,11 @@ $("#resetHomeDate").on("click", function () {
 // 犬の画像を交互に切り替える
 const $dogRunner = $("#dogRunner");
 const dogImages = ["img/dog1.png", "img/dog2.png"];
-let dogIndex = 0;//dog1からスタート
+let dogIndex = 0; //dog1からスタート
 
 setInterval(() => {
   dogIndex = (dogIndex + 1) % dogImages.length;
-  $dogRunner.attr("src",dogImages[dogIndex]);
+  $dogRunner.attr("src", dogImages[dogIndex]);
 }, 300); // 0.3秒ごとに犬画像を切り替え
 
 // ① dogIndex + 1 でカウントアップ
