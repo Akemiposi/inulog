@@ -1,13 +1,23 @@
-
-}body {
+body {
   font-family: "Hiragino Kaku Gothic ProN", "Segoe UI", sans-serif;
   background-color: #fff8f0;
   color: #333;
+  height: 100%;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
   line-height: 1.6;
 }
-
+main,
+.card,
+.container {
+  width: 100%;
+  max-width: 600px; /* 必要に応じて */
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
 header {
   background-color: #f7d5a3;
   padding: 10px;
@@ -36,6 +46,7 @@ main {
   background-color: #fffdf7;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(200, 160, 100, 0.2);
+  flex: 1;
 }
 /* 🐾 */
 main::before {
@@ -50,12 +61,16 @@ h1 {
   font-size: 2.5em;
   color: #b95e00;
   margin-bottom: 10px;
+  padding-bottom: 20px;
 }
 
 h2 {
+  font-size: 1.5em;
+  font-weight: bold;
   border-left: 8px solid #f2c27b;
   padding-left: 10px;
   margin-top: 30px;
+  margin-bottom: 20px;
   color: #865500;
 }
 
@@ -124,6 +139,41 @@ dl dd {
 
 dd {
   margin: 0 0 10px 0;
+}
+
+#dateForm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+#dateForm label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+#dateForm input[type="date"] {
+  margin-top: 4px;
+  padding: 4px;
+}
+
+#dateForm button {
+  padding: 6px 12px;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+#dayInfo {
+  display: flex;
+  gap: 20px;
+  padding: 5px 0;
+  font-size: 0.95em;
+  color: #774400;
+  font-weight: bold;
 }
 
 #dayInfo p {

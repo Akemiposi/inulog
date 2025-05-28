@@ -76,6 +76,14 @@ $("#logForm").on("submit", function (e) {
   this.reset();
 });
 
+// 全消去ボタン
+$("#clear").on("click", function () {
+  localStorage.clear();
+  $("#list").empty();
+  alert("消去しました");
+  this.reset();
+});
+// ーーーーーーーーーー追加ーーーーーーーーーーーー
 //３、ログを出力
 $("#showLogs").on("click", function () {
   const logs = JSON.parse(localStorage.getItem(logKey)) || [];
@@ -83,7 +91,7 @@ $("#showLogs").on("click", function () {
     $("#logDisplay").html("ログはありません");
     return;
   }
-
+// ーーーーーーーーーー追加ーーーーーーーーーーーー
   const html = logs
     .map((log, i) => {
       const getOrNA = (val) => (val ? val : "未入力");
