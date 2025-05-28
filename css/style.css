@@ -141,6 +141,33 @@ dd {
   margin: 0 0 10px 0;
 }
 
+/* ーーーログフォームの左右ブロック分けーーー */
+#logForm dl {
+  display: flex;
+  gap: 20px;
+}
+
+#logForm .left,
+#logForm .right {
+  flex: 1;
+  min-width: 280px;
+}
+
+#logForm .left dt,
+#logForm .right dt {
+  margin-top: 10px;
+}
+
+#logForm .left dd,
+#logForm .right dd {
+  margin-bottom: 15px;
+}
+
+#logForm .full {
+  width: 100%;
+}
+
+/* ーーーーーー日付表示ーーーーーーー */
 #dateForm {
   display: flex;
   flex-wrap: wrap;
@@ -264,4 +291,22 @@ footer {
 #logDisplay small {
   color: #888;
   font-size: 0.8em;
+}
+
+/* レスポンシブ */
+@media screen and (max-width: 600px) {
+  #dateForm {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #dayInfo {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  #dateForm label,
+  #dateForm button {
+    width: 100%;
+  }
 }
