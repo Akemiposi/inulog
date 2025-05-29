@@ -76,14 +76,6 @@ $("#logForm").on("submit", function (e) {
   this.reset();
 });
 
-// 全消去ボタン
-$("#clear").on("click", function () {
-  localStorage.clear();
-  $("#list").empty();
-  alert("消去しました");
-  this.reset();
-});
-// ーーーーーーーーーー追加ーーーーーーーーーーーー
 //３、ログを出力
 $("#showLogs").on("click", function () {
   const logs = JSON.parse(localStorage.getItem(logKey)) || [];
@@ -91,7 +83,7 @@ $("#showLogs").on("click", function () {
     $("#logDisplay").html("ログはありません");
     return;
   }
-// ーーーーーーーーーー追加ーーーーーーーーーーーー
+
   const html = logs
     .map((log, i) => {
       const getOrNA = (val) => (val ? val : "未入力");
@@ -111,6 +103,35 @@ $("#showLogs").on("click", function () {
     .join(""); //文字列として表示する時にカンマを入れないようにする
 
   $("#logDisplay").html(html);
+});
+
+//＊＊＊＊＊日付指定消去＊＊＊＊＊
+
+$("#deleteLogByDate").on("click", function () {
+  const targetDate = $("#deleteDate").val();
+  console.log(targetDate);
+
+  if (!targetDate) {
+    alert("削除したい日付を入力してください");
+    return;
+  }
+
+  const logs = JSON.parse(localStorage.getItem("healthLogs")) || [];
+  const filteredLogs = logs.filter((log) => log.date !== targetDate);
+
+  logs.forEach((log) => {
+    console.log("保存された日付:", log.date);
+  });
+
+  if (logs.length === filteredLogs.length) {
+    alert("その日付のデータは見つかりませんでした");
+    return;
+  }
+
+  localStorage.setItem("healthLogs", JSON.stringify(filteredLogs));
+  alert(`${targetDate} のログを削除しました`);
+  $("#deleteDate").val("");
+  $("#logDisplay").html("");
 });
 
 //＊＊＊＊＊日数計算＊＊＊＊＊
@@ -176,6 +197,7 @@ $(document).ready(function () {
     showDaysSince(homeDateStr, "#homeDays", "うちに来てから");
   }
 });
+
 $("#resetHomeDate").on("click", function () {
   localStorage.removeItem("homeDate");
   $("#homeDate").val(""); // フォームの表示もクリア
