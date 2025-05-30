@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>いぬメモ_ギャラリー</title>
+    <title>いぬログ＿いぬメモ</title>
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
@@ -11,32 +11,51 @@
     <header>
       <nav>
         <ul>
-          <li><a href="index.html">いぬメモ</a></li>
-          <li><a href="inumemo.html">メモ一覧</a></li>
-          <li>いぬログ</li>
+          <li><a href="inulog.html">いぬログ</a></li>
+          <li><a href="loglist.html">ログ一覧</a></li>
+          <li><a href="#">いぬメモ</a></li>
           <li><a href="hoslog.html">ほすログ</a></li>
-          <li>たびログ</li>
+          <li><a href="inulog.html">たびログ</a></li>
         </ul>
       </nav>
     </header>
 
     <main>
       <section>
-        <h1>メモ一覧</h1>
-      </section>
-
-      <section id="logSection">
-        <h2>記録一覧</h2>
-        <button id="showLogs">ログを見る</button>
-        <div id="logDisplay"></div>
+        <h1>いぬメモ</h1>
       </section>
 
       <section>
-        <input type="date" id="deleteDate">
-        <button id="deleteLogByDate">この日付のログを削除</button>
+        <h2>私のいぬについて</h2>
+        <form id="memoForm">
+          <div class="full">
+            <dl>
+              <dt><label for="name">なまえ</label></dt>
+              <dd>
+                <input type="text" id="name" placeholder="いぬの名前を入力" />
+              </dd>
+
+              <dt><label for="breed">犬種</label></dt>
+              <dd><input type="text" id="breed" placeholder="犬種を入力" /></dd>
+
+              <dt><label for="gender">性別</label></dt>
+              <dd>
+                <input type="text" id="gender" placeholder="オス・メスを入力" />
+              </dd>
+
+              <dt><label for="charactor">性格</label></dt>
+              <dd>
+                <textarea
+                  id="charactor"
+                  rows="5"
+                  placeholder="性格を入力"
+                ></textarea>
+              </dd>
+            </dl>
+          </div>
+        </form>
       </section>
     </main>
-
     <div id="runScene">
       <div id="grass"></div>
       <img id="dogRunner" src="img/dog1.png" alt="走るダックス" />
@@ -46,6 +65,6 @@
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="js/index.js"></script>
+    <script src="js/inumemo.js"></script>
   </body>
 </html>

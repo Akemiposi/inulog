@@ -9,11 +9,9 @@ body {
   flex-direction: column;
   line-height: 1.6;
 }
-main,
-.card,
-.container {
+main {
   width: 100%;
-  max-width: 600px; /* 必要に応じて */
+  max-width: 600px;
   margin: 0 auto;
   padding: 0 1rem;
   box-sizing: border-box;
@@ -81,6 +79,7 @@ form label {
 }
 
 input[type="date"],
+input[type="text"],
 select,
 textarea {
   width: 100%;
@@ -165,6 +164,16 @@ dd {
 
 #logForm .full {
   width: 100%;
+}
+
+#memoForm input[type="text"],
+#memoForm textarea {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 2px solid #f2c27b;
+  border-radius: 10px;
+  background-color: #fffaf2;
 }
 
 /* ーーーーーー日付表示ーーーーーーー */
@@ -266,6 +275,10 @@ footer {
 
 /* ーーーーーーーーー記録のスタイルーーーーーーーーーーー */
 /* ログ表示用スタイル（#logDisplay内の1件ごとの表示） */
+#logDisplay {
+  min-height: 150px;
+  padding-top: 10px;
+}
 #logDisplay > div {
   background-color: #fffdf5;
   border: 2px dotted #f5c481;
@@ -291,6 +304,40 @@ footer {
 #logDisplay small {
   color: #888;
   font-size: 0.8em;
+}
+
+
+
+header nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 15px;
+  background-color: #f8d5a6;
+}
+
+header nav ul li a {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #fffaf2;
+  border: 2px solid #d89b5d;
+  border-radius: 12px;
+  text-decoration: none; /* 下線を消す */
+  color: #5a3e1b; /* 青くならないように */
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header nav ul li a:hover {
+  background-color: #ffe6c7;
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+header nav ul li a:active {
+  transform: translateY(0);
+  box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* レスポンシブ */
