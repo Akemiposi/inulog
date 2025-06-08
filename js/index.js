@@ -2,7 +2,7 @@ const logKey = "healthLogs"; //healthLogsを全部「logKey」とする
 
 // ＊＊＊＊＊今日の天気セクション＊＊＊＊＊
 
-const apiKey = "f53d2635fbbc9041de9c29eecd83a9a2"; //openweathermap のAPIkey
+import apiKey from "./openWeatherConfig.js"; //openweathermap のAPIkey
 const lat = 35.68;
 const lon = 139.76;
 
